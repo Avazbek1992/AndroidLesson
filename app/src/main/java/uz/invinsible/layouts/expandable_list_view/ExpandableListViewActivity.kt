@@ -10,6 +10,7 @@ class ExpandableListViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.expandable_list_view_layout)
+//        Azizbek dangasa
 
         val groupName = listOf("Chevrolet", "Tesla", "Mercedes", "BMW")
 

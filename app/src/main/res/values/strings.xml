@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Layouts</string>
+
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="more_setting">More Setting</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="share">Share</string>
+    <string name="search">Search</string>
+    <string name="alpha_anim">Alpha Anim</string>
+    <string name="scale_amin">Scale Amin</string>
+    <string name="translate_anim">Translate Anim</string>
+    <string name="set_anim">Set Anim</string>
+    <string name="secondActivity">SecondActivity</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="password">password</string>
+    <string name="gmail">gmail</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="log_out">Log out</string>
+    <string name="this_is_grid_view">This is grid view</string>
+    <string name="ronaldo">Ronaldo</string>
+    <string name="fragment">Fragment</string>
+    <string name="this_is_fragment">This is fragment</string>
+    <string name="back">back</string>
+    <string name="this_is_fragment2">this is fragment 2</string>
+    <string name="button">button</string>
+    <string name="aa">AA</string>
+    <string name="mahmudjanov_azizbek">Mahmudjanov Azizbek</string>
+    <string name="_998932685006">+998932685006</string>
+    <string name="new_group">New Group</string>
+    <string name="chats">Chats</string>
+    <string name="contacts">Contacts</string>
+    <string name="calls">Calls</string>
+    <string name="people_nearby">People Nearby</string>
+    <string name="saved_messages">Saved Messages</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="telegram_features">Telegram Features</string>
+    <string name="others">Others</string>
+    <string name="_998951575855">+998951575855</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="show_dialog">Show Dialog</string>
+    <string name="siz_nimalarga_qiziqasiz">Siz nimalarga qiziqasiz?</string>
+    <string name="football">Football</string>
+    <string name="shaxmat">Shaxmat</string>
+    <string name="csgo">CSgo</string>
+    <string name="kitob_o_qish">Kitob o\'qish</string>
+    <string name="ok">OK</string>
+    <string name="set">Set</string>
+
+
+    <string-array name="fullNames">
+        <item>Mahmudjanov Azizbek</item>
+        <item>Sharifxo\'jayev Muhammadaziz</item>
+        <item>Tohirbekov Doniyor</item>
+        <item>Abdullayev Abrorbek</item>
+        <item>Akbaraliyev Nuriddin</item>
+        <item>Qodirjanov Abubakr</item>
+        <item>Abduraimov Umarbek</item>
+        <item>Hakimov Jobirxon</item>
+        <item>Abubakriddinov Shahriyor</item>
+        <item>Ubaydullayev Avazbek</item>
+    </string-array>
+
+    <string-array name="phoneNumbers">
+        <item>+998932685006</item>
+        <item>+998940581317</item>
+        <item>+998913488875</item>
+        <item>+998999888976</item>
+        <item>+998931765224</item>
+        <item>+998931997672</item>
+        <item>+998913467402</item>
+        <item>+998907547744</item>
+        <item>+998938764422</item>
+        <item>+998941575855</item>
+    </string-array>
+
+    <string-array name="colors">
+        <item></item>
+
+    </string-array>
+</resources>

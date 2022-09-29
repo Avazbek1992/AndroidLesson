@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Gender:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/male_id"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/female_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Hobbies:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/hobby1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Football" />
+
+    <CheckBox
+        android:id="@+id/hobby2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tennis" />
+
+    <CheckBox
+        android:id="@+id/hobby3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cook" />
+
+    <CheckBox
+        android:id="@+id/hobby4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coding" />
+
+    <CheckBox
+        android:id="@+id/hobby5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horse rider" />
+
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/btn_finish_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish" />
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="33sp"
+        android:id="@+id/result_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

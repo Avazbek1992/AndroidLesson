@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_new_group_id"
+        android:icon="@drawable/ic_new_group"
+        android:title="@string/new_group" />
+    <item
+        android:id="@+id/nav_contacts_id"
+        android:icon="@drawable/ic_contacts"
+        android:title="@string/contacts" />
+    <item
+        android:id="@+id/nav_calls_id"
+        android:icon="@drawable/ic_calls"
+        android:title="@string/calls" />
+    <item
+        android:id="@+id/nav_people_nearby_id"
+        android:icon="@drawable/ic_location"
+        android:title="@string/people_nearby" />
+    <item
+        android:id="@+id/nav_saved_messages_id"
+        android:icon="@drawable/ic_saved_messages"
+        android:title="@string/saved_messages" />
+    <item
+        android:id="@+id/nav_setting_id"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings" />
+    <item android:title="@string/others">
+        <menu>
+            <item
+                android:id="@+id/nav_invite_friends_id"
+                android:icon="@drawable/ic_person_add"
+                android:title="@string/invite_friends" />
+            <item
+                android:id="@+id/nav_telegram_features_id"
+                android:icon="@drawable/ic_info"
+                android:title="@string/telegram_features" />
+        </menu>
+    </item>
+
+
+</menu>

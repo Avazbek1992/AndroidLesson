@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/siz_nimalarga_qiziqasiz"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <CheckBox
+        android:id="@+id/dialog_check1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/football"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/dialog_check2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shaxmat"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/dialog_check3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/csgo"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/dialog_check4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kitob_o_qish"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dialog_ok_id"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:textSize="24sp" />
+
+</LinearLayout>

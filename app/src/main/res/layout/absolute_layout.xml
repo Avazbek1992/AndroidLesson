@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Hello world!"
-        android:layout_x="40dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_y="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_x="50dp"
+        android:layout_y="100dp"
+        android:text="@string/hello_world"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
 </AbsoluteLayout>

@@ -5,6 +5,9 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="chat_color">#434141</color>
+    <color name="group_color">#557A7A</color>
+    <color name="channel_color">#00BCD4</color>
     <color name="black">#FF000000</color>
     <color name="white">#ffffff</color>
     <color name="yellow">#FFEB3B</color>

@@ -54,6 +54,13 @@
     <string name="channel">Channel</string>
     <string name="group">Group</string>
     <string name="chat">Chat</string>
+    <string name="title">title</string>
+    <string name="football_gamers">Football gamers</string>
+    <string name="gerrard_title">Steven Gerrard</string>
+    <string name="gerrard_subtitle">Steven Gerrard</string>
+    <string name="beckham_title">David Beckham</string>
+    <string name="beckham_subtitle">Hall Of Fame profile</string>
+    <string name="home">Home</string>
 
 
     <string-array name="fullNames">

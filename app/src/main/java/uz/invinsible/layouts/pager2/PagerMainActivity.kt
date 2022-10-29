@@ -61,6 +61,5 @@ class PagerMainActivity : AppCompatActivity() {
         }
 
         viewPager2.adapter = PagerAdapter(arrayList)
-
     }
 }

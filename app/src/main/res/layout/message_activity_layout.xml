@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/message_layout_id" />
+
+    <RelativeLayout
+        android:id="@+id/message_layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/message_emoji_btn_id"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_emoji"
+            android:text="@string/send" />
+
+        <EditText
+            android:id="@+id/message_edit_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/message_attach_btn_id"
+            android:layout_toEndOf="@+id/message_emoji_btn_id"
+            android:background="@null"
+            android:hint="@string/message"
+            android:paddingStart="10dp" />
+
+        <ImageView
+            android:id="@+id/message_attach_btn_id"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/message_mic_btn_id"
+            android:src="@drawable/ic_attach_file"
+            android:text="@string/send" />
+
+        <ImageView
+            android:id="@+id/message_mic_btn_id"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_mic"
+            android:text="@string/send" />
+    </RelativeLayout>
+</RelativeLayout>

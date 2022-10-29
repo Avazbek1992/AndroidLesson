@@ -61,6 +61,9 @@
     <string name="beckham_title">David Beckham</string>
     <string name="beckham_subtitle">Hall Of Fame profile</string>
     <string name="home">Home</string>
+    <string name="pupils_list">Pupils list</string>
+    <string name="send">Send</string>
+    <string name="message">Message</string>
 
 
     <string-array name="fullNames">

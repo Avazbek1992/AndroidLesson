@@ -4,11 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/message_layout_id" />
+        android:layout_above="@+id/message_layout_id"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/message_recycler_view_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/message_layout_id"
@@ -29,26 +35,40 @@
             android:id="@+id/message_edit_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toStartOf="@+id/message_attach_btn_id"
+            android:layout_toStartOf="@+id/send_layout_id"
             android:layout_toEndOf="@+id/message_emoji_btn_id"
             android:background="@null"
             android:hint="@string/message"
             android:paddingStart="10dp" />
 
-        <ImageView
-            android:id="@+id/message_attach_btn_id"
-            android:layout_width="40dp"
+        <RelativeLayout
+            android:id="@+id/send_layout_id"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_toStartOf="@id/message_mic_btn_id"
-            android:src="@drawable/ic_attach_file"
-            android:text="@string/send" />
+            android:layout_alignParentEnd="true">
 
-        <ImageView
-            android:id="@+id/message_mic_btn_id"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_mic"
-            android:text="@string/send" />
+            <ImageView
+                android:id="@+id/message_attach_btn_id"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/message_mic_btn_id"
+                android:src="@drawable/ic_attach_file"
+                android:text="@string/send" />
+
+            <ImageView
+                android:id="@+id/message_mic_btn_id"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_mic"
+                android:text="@string/send" />
+
+            <ImageView
+                android:visibility="gone"
+                android:src="@drawable/ic_send"
+                android:id="@+id/send_btn_id"
+                android:layout_width="80dp"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

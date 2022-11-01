@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.util.ArrayList
 
 class MyDatabase(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -13,11 +14,21 @@ class MyDatabase(context: Context) :
                 "$USER_FULL_NAME text, " +
                 "$USER_LAST_MESSAGE text )"
         db?.execSQL(query)
+        val query1 = "CREATE TABLE $MESSAGE_TABLE_NAME (" +
+                "$MESSAGE_ID integer primary key, " +
+                "$MESSAGE_FROM integer, " +
+                "$MESSAGE_TO integer," +
+                "$MESSAGE_TEXT text," +
+                "$MESSAGE_DATE text )"
+        db?.execSQL(query1)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         val query = "DROP TABLE IF EXISTS $USER_TABLE_NAME"
         db?.execSQL(query)
+        onCreate(db)
+        val query1 = "DROP TABLE IF EXISTS $MESSAGE_TABLE_NAME"
+        db?.execSQL(query1)
         onCreate(db)
     }
 
@@ -28,6 +39,37 @@ class MyDatabase(context: Context) :
         contentValues.put(USER_LAST_MESSAGE, lastMessage)
         db.insert(USER_TABLE_NAME, null, contentValues)
         db.close()
+    }
+
+    fun insertMessage(from: Int, to: Int, message: String, currentDate: String) {
+        val db = writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(MESSAGE_FROM, from)
+        contentValues.put(MESSAGE_TO, to)
+        contentValues.put(MESSAGE_TEXT, message)
+        contentValues.put(MESSAGE_DATE, currentDate)
+        db.insert(MESSAGE_TABLE_NAME, null, contentValues)
+        db.close()
+    }
+
+    fun selectMessages(from: Int, to: Int): ArrayList<Message> {
+        val db = readableDatabase
+        val query =
+            "select * from $MESSAGE_TABLE_NAME where $MESSAGE_FROM = $from or $MESSAGE_TO = $to"
+        val cursor = db.rawQuery(query, arrayOf())
+        val messageList = ArrayList<Message>()
+        while (cursor.moveToNext()) {
+            messageList.add(
+                Message(
+                    cursor.getInt(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+                )
+            )
+        }
+        return messageList
     }
 
     fun selectUsers(): ArrayList<User> {
@@ -62,6 +104,19 @@ class MyDatabase(context: Context) :
         return cursor.count
     }
 
+    fun getUser(userId: Int): User {
+        val db = readableDatabase
+        val query = "select * from $USER_TABLE_NAME where $USER_ID = $userId"
+        val cursor = db.rawQuery(query, arrayOf())
+        cursor.moveToFirst()
+        return User(
+            cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getString(3)
+        )
+    }
+
     companion object {
         const val DATABASE_NAME = "MyDatabase"
         const val DATABASE_VERSION = 1
@@ -69,5 +124,12 @@ class MyDatabase(context: Context) :
         const val USER_ID = "_userId"
         const val USER_FULL_NAME = "_fullName"
         const val USER_LAST_MESSAGE = "_lastMessage"
+        const val MESSAGE_TABLE_NAME = "MESSAGE"
+        const val MESSAGE_ID = "_messageId"
+        const val MESSAGE_FROM = "_from"
+        const val MESSAGE_TO = "_to"
+        const val MESSAGE_TEXT = "_message"
+        const val MESSAGE_DATE = "_date"
+
     }
 }

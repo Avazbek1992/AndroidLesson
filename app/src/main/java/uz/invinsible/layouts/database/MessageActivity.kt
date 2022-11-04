@@ -22,7 +22,7 @@ class MessageActivity : AppCompatActivity() {
         val database = MyDatabase(this)
         val from = intent.getIntExtra("from", -1)
         val to = intent.getIntExtra("to", -1)
-        val messageList = database.selectMessages(from, to)
+        var messageList = database.selectMessages(from, to)
         val messageEdit: EditText = findViewById(R.id.message_edit_id)
         val sendBtn: ImageView = findViewById(R.id.send_btn_id)
         val micBtn: ImageView = findViewById(R.id.message_mic_btn_id)
@@ -30,13 +30,32 @@ class MessageActivity : AppCompatActivity() {
         //set recyclerView
         val recyclerView: RecyclerView = findViewById(R.id.message_recycler_view_id)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = MessageAdapter(messageList, from)
+        var adapter = MessageAdapter(messageList, from)
         recyclerView.adapter = adapter
+        if (messageList.isNotEmpty())
+            recyclerView.smoothScrollToPosition(messageList.size - 1)
+
+        for (message in messageList) {
+            println("id: ${message.messageId}")
+            println("from: ${message.from}")
+            println("to: ${message.to}")
+            println("message: ${message.message}")
+            println("date: ${message.currentDate}")
+        }
+
 
         sendBtn.setOnClickListener {
-            database.insertMessage(from, to, messageEdit.text.toString(), getCurrentDate())
+            database.insertMessage(
+                from,
+                to,
+                messageEdit.text.toString(),
+                getCurrentDate()
+            )
             messageEdit.setText("")
-            adapter.notifyDataSetChanged()
+            messageList = database.selectMessages(from, to)
+            adapter = MessageAdapter(messageList, from)
+            recyclerView.adapter = adapter
+            recyclerView.smoothScrollToPosition(messageList.size - 1)
         }
 
         messageEdit.addTextChangedListener(object : TextWatcher {

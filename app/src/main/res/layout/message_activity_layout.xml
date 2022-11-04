@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/teal_700"
             android:id="@+id/message_recycler_view_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

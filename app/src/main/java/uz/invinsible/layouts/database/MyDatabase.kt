@@ -55,7 +55,7 @@ class MyDatabase(context: Context) :
     fun selectMessages(from: Int, to: Int): ArrayList<Message> {
         val db = readableDatabase
         val query =
-            "select * from $MESSAGE_TABLE_NAME where $MESSAGE_FROM = $from or $MESSAGE_TO = $to"
+            "select * from $MESSAGE_TABLE_NAME where $MESSAGE_FROM = $from and $MESSAGE_TO = $to or $MESSAGE_FROM = $to and $MESSAGE_TO = $from"
         val cursor = db.rawQuery(query, arrayOf())
         val messageList = ArrayList<Message>()
         while (cursor.moveToNext()) {
@@ -113,7 +113,7 @@ class MyDatabase(context: Context) :
             cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
-            cursor.getString(3)
+            getIMGTxt(cursor.getString(1))
         )
     }
 

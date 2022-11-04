@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@color/teal_700"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/message_left_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
@@ -34,11 +36,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="50dp"
             android:background="@drawable/message_bubble_left"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/left_user_name_id"
@@ -71,13 +75,16 @@
         android:id="@+id/message_right_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
         <LinearLayout
+            android:id="@+id/right_message_layout_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginStart="50dp"
-            android:layout_weight="1"
             android:background="@drawable/message_bubble_right"
             android:orientation="vertical"
             android:padding="10dp">
@@ -95,7 +102,7 @@
                 android:id="@+id/right_message_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="nima gap nima gap nima gap nima gap nima gap nima gap nima gap nima gap nima gap nima gap nima gap nima gap nima gap "
+                android:text="nima"
                 android:textColor="@color/black" />
 
 
@@ -113,7 +120,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="bottom"
+            android:layout_alignBottom="@+id/right_message_layout_id"
+            android:layout_gravity="bottom|end"
+            android:layout_toEndOf="@+id/right_message_layout_id"
             android:elevation="5dp"
             app:cardCornerRadius="360dp"
             app:cardElevation="5dp">

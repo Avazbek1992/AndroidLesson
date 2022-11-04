@@ -1,5 +1,6 @@
 package uz.invinsible.layouts
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,12 +9,16 @@ import uz.invinsible.layouts.intent.SecondIntentActivity
 
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.views_intent)
+        setContentView(R.layout.card_view_layout)
 
-        findViewById<Button>(R.id.intent_btn_id).setOnClickListener {
-            startActivity(Intent(this, SecondIntentActivity::class.java))
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+//        findViewById<Button>(R.id.intent_btn_id).setOnClickListener {
+//            startActivity(Intent(this, SecondIntentActivity::class.java))
+//        }
     }
 }

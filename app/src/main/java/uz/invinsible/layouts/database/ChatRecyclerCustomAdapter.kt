@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.invinsible.layouts.R
 
 class ChatRecyclerCustomAdapter(
-    private val usersList: ArrayList<User>
+    private val usersList: ArrayList<User>,
+    private val onItemClick: RecycleItemOnClick,
 ) :
     RecyclerView.Adapter<ChatRecyclerCustomAdapter.ViewHolder>() {
     private val color = arrayOf(Color.BLUE, Color.RED)
@@ -29,7 +30,7 @@ class ChatRecyclerCustomAdapter(
         holder.phoneNumber.text = usersList[position].lastMessage
 
         holder.itemView.setOnClickListener {
-//            onItemClick.onItemClick(position)
+            onItemClick.onItemClick(position)
         }
     }
 

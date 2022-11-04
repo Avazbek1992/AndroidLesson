@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uz.invinsible.layouts.R
@@ -24,13 +25,13 @@ class MessageAdapter(private val messageList: ArrayList<Message>, private val us
             holder.rightIMGText.text = database.getUser(messageList[position].from).imgTxt
             holder.rightUserName.text = database.getUser(messageList[position].from).fullName
             holder.rightMessage.text = messageList[position].message
-            holder.rightMessage.text = messageList[position].currentDate
+            holder.rightMessageDate.text = messageList[position].currentDate
             holder.leftLayout.visibility = View.GONE
         } else {//left
-            holder.leftIMGText.text = database.getUser(messageList[position].to).imgTxt
-            holder.leftUserName.text = database.getUser(messageList[position].to).fullName
+            holder.leftIMGText.text = database.getUser(messageList[position].from).imgTxt
+            holder.leftUserName.text = database.getUser(messageList[position].from).fullName
             holder.leftMessage.text = messageList[position].message
-            holder.leftMessage.text = messageList[position].currentDate
+            holder.leftMessageDate.text = messageList[position].currentDate
             holder.rightLayout.visibility = View.GONE
         }
     }

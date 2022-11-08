@@ -118,6 +118,14 @@ class MyDatabase(context: Context) :
         )
     }
 
+    fun updateLastMessage(userId: Int, lastMessage: String) {
+        val db = writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(USER_LAST_MESSAGE, lastMessage)
+        db.update(USER_TABLE_NAME, contentValues, "$USER_ID=?", arrayOf(userId.toString()))
+        db.close()
+    }
+
     companion object {
         const val DATABASE_NAME = "MyDatabase"
         const val DATABASE_VERSION = 1

@@ -19,9 +19,23 @@ class MessengerChat : Fragment(), RecycleItemOnClick {
     ): View? {
         val root = inflater.inflate(R.layout.chat_activity_layout, container, false)
         val myDatabase = MyDatabase(requireActivity())
+        val messageList = myDatabase.selectMessages(1, 2)
+        var lastMessage1 = ""
+        var lastMessage2 = ""
+        for (messages in messageList) {
+            if (messages.from == 1) {
+                lastMessage2 = messages.message
+            } else {
+                lastMessage1 = messages.message
+            }
+        }
+
+        myDatabase.updateLastMessage(1, lastMessage1)
+        myDatabase.updateLastMessage(2, lastMessage2)
+
         if (myDatabase.getUsersCount() == 0) {
-            myDatabase.insertUser("Azizbek Mahmudjanov", "Salom")
-            myDatabase.insertUser("Shahriyor Abubakriddinov", "nima gaplar")
+            myDatabase.insertUser("Azizbek Mahmudjanov", "")
+            myDatabase.insertUser("Shahriyor Abubakriddinov", "")
         }
 
         val usersList = myDatabase.selectUsers()
@@ -39,7 +53,7 @@ class MessengerChat : Fragment(), RecycleItemOnClick {
         if (position == 0) {
             intent.putExtra("from", 1)
             intent.putExtra("to", 2)
-        } else if (position == 1){
+        } else if (position == 1) {
             intent.putExtra("from", 2)
             intent.putExtra("to", 1)
         }

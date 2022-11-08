@@ -51,8 +51,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="this_is_a_car">This is a car</string>
     <string name="azizbek">Azizbek</string>
-    <string name="channel">Channel</string>
-    <string name="group">Group</string>
+    <string name="channel">Channel title long</string>
+    <string name="group">Group title long</string>
     <string name="chat">Chat title long</string>
     <string name="title">title</string>
     <string name="football_gamers">Football gamers</string>
@@ -64,6 +64,8 @@
     <string name="pupils_list">Pupils list</string>
     <string name="send">Send</string>
     <string name="message">Message</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
 
     <string-array name="fullNames">

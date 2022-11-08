@@ -65,7 +65,8 @@ class MyDatabase(context: Context) :
                     cursor.getInt(1),
                     cursor.getInt(2),
                     cursor.getString(3),
-                    cursor.getString(4)
+                    cursor.getString(4),
+                    ""
                 )
             )
         }

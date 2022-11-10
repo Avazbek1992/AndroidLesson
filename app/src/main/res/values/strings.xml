@@ -66,6 +66,8 @@
     <string name="message">Message</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="music_title">Music title</string>
+    <string name="_00_00">00:00</string>
 
 
     <string-array name="fullNames">

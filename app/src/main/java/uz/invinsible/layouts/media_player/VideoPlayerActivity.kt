@@ -3,7 +3,6 @@ package uz.invinsible.layouts.media_player
 import android.net.Uri
 import android.os.Bundle
 import android.widget.MediaController
-import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import uz.invinsible.layouts.databinding.VideoPlayerActivityLayoutBinding
 

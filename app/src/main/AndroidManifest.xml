@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Layouts"
         tools:targetApi="31">
         <activity
-            android:name=".media_player.VideoPlayerActivity"
+            android:name=".firebase.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".database.MessengerTabActivity" />
+        <activity android:name=".firebase.SignUpActivity" />
         <activity android:name=".database.MessageActivity" />
         <activity android:name=".intent.SecondIntentActivity" />
         <activity android:name=".shared_pref.LoginActivity" />

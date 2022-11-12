@@ -68,6 +68,10 @@
     <string name="gallery">Gallery</string>
     <string name="music_title">Music title</string>
     <string name="_00_00">00:00</string>
+    <string name="welcome_to_nam_travel" >Android Lesson</string>
+    <string name="phone_number_or_email">Email kiritng:</string>
+    <string name="conform_password">Parolni tasdiqlang</string>
+    <string name="loading">Loading…</string>
 
 
     <string-array name="fullNames">

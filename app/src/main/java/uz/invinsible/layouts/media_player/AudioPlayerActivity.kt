@@ -29,7 +29,7 @@ class AudioPlayerActivity : AppCompatActivity() {
         binding = AudioPlayerActivityLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val audio = MediaPlayer.create(this, R.raw.audio1)
+        val audio = MediaPlayer.create(this, /*R.raw.audio1*/0)
         binding.seekbarId.progress = 0
         binding.seekbarId.max = audio.duration
         binding.audioFullId.text = convertMinuteSecondFromMillisecond(audio.duration)
@@ -46,9 +46,11 @@ class AudioPlayerActivity : AppCompatActivity() {
 
         binding.seekbarId.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekbar: SeekBar?, position: Int, bool: Boolean) {
-                binding.audioStartId.text =
-                    convertMinuteSecondFromMillisecond(audio.currentPosition)
-                audio.seekTo(position)
+                if (bool) {
+                    binding.audioStartId.text =
+                        convertMinuteSecondFromMillisecond(audio.currentPosition)
+                    audio.seekTo(position)
+                }
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {

@@ -36,8 +36,10 @@ class SignInActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener() {
                     myDialog().dismiss()
                     if (it.isSuccessful) {
+                        myDialog().dismiss()
                         super.startActivity(Intent(this, MessengerTabActivity::class.java))
                     } else {
+                        myDialog().dismiss()
                         Toast.makeText(
                             this,
                             "Parol yoki login noto'g'ri",

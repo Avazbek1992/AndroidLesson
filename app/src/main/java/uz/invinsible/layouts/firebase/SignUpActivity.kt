@@ -39,6 +39,7 @@ class SignUpActivity : AppCompatActivity() {
                                 ).show()
                                 super.startActivity(Intent(this, SignInActivity::class.java))
                             } else {
+                                myDialog().dismiss()
                                 Toast.makeText(
                                     this,
                                     "email farmati noto'g'ri",

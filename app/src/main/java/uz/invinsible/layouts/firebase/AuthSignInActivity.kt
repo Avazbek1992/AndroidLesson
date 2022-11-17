@@ -9,9 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 import uz.invinsible.layouts.R
 import uz.invinsible.layouts.database.MessengerTabActivity
 import uz.invinsible.layouts.databinding.LoginActivityLayoutBinding
-import uz.invinsible.layouts.shared_pref.LoginActivity
 
-class SignInActivity : AppCompatActivity() {
+class AuthSignInActivity : AppCompatActivity() {
     lateinit var binding: LoginActivityLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +20,7 @@ class SignInActivity : AppCompatActivity() {
 
         val auth = FirebaseAuth.getInstance()
         binding.registerTvId.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
+            startActivity(Intent(this, AuthSignUpActivity::class.java))
             finish()
         }
 

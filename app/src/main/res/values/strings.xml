@@ -72,6 +72,8 @@
     <string name="phone_number_or_email">Email kiritng:</string>
     <string name="conform_password">Parolni tasdiqlang</string>
     <string name="loading">Loading…</string>
+    <string name="fish">F.I.SH</string>
+    <string name="phone_number">Telefon raqam</string>
 
 
     <string-array name="fullNames">

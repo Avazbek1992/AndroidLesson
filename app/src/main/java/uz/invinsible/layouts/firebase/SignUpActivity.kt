@@ -1,81 +1,55 @@
 package uz.invinsible.layouts.firebase
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import uz.invinsible.layouts.R
-import uz.invinsible.layouts.databinding.RegisterActivityLayoutBinding
-import uz.invinsible.layouts.shared_pref.LoginActivity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import uz.invinsible.layouts.databinding.ChatRegisterActivityLayoutBinding
 
 class SignUpActivity : AppCompatActivity() {
-    private lateinit var binding: RegisterActivityLayoutBinding
+
+    lateinit var binding: ChatRegisterActivityLayoutBinding
+    var fireDatabase = FirebaseDatabase.getInstance()
+        .getReferenceFromUrl("https://androidlesson-6c60c-default-rtdb.firebaseio.com/")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = RegisterActivityLayoutBinding.inflate(layoutInflater)
+        binding = ChatRegisterActivityLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         supportActionBar?.hide()
-        val auth = FirebaseAuth.getInstance()
+
         binding.registerBtnId.setOnClickListener {
-            if (binding.registerEmailEditId.text?.isNotEmpty() == true
-                && binding.registerPasswordEditId.text?.isNotEmpty() == true
+            if (binding.fishEdit.text.toString().isNotEmpty() && binding.emailEdit.text.toString()
+                    .isNotEmpty() && binding.phoneEdit.text.toString().isNotEmpty()
             ) {
-                if (binding.registerPasswordEditId.text?.toString()?.length!! > 6) {
-                    if (binding.registerPasswordEditId.text.toString() == binding.registerConfirmPasswordEditId.text.toString()) {
-                        myDialog().show()
-                        val email: String = binding.registerEmailEditId.text.toString()
-                        val password = binding.registerPasswordEditId.text.toString()
-                        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                myDialog().dismiss()
-                                Toast.makeText(
-                                    this,
-                                    "Siz ro'yhatdan muvaffaqiyatli o'tdingiz",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                super.startActivity(Intent(this, SignInActivity::class.java))
-                            } else {
-                                myDialog().dismiss()
-                                Toast.makeText(
-                                    this,
-                                    "email farmati noto'g'ri",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                println("fireDatabase working")
+                fireDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.child("Users").hasChild(binding.phoneEdit.text.toString())) {
+                            println("fireDatabase if")
+                            Toast.makeText(
+                                baseContext,
+                                "Siz allaqachon ro'yhaatdan o'tgansiz...",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            println("fireDatabase else")
+                            snapshot.child("Users").child(binding.phoneEdit.text.toString())
+                                .child(binding.fishEdit.text.toString())
+                            snapshot.child("Users").child(binding.phoneEdit.text.toString())
+                                .child(binding.emailEdit.text.toString())
                         }
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Parolni tasdiqlash noto'g'ri kiritildi",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Parol uzunligi 6tadan kam",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+
+                })
             }
         }
-
-
-        binding.loginTvId.setOnClickListener {
-            startActivity(Intent(this, SignInActivity::class.java))
-            finish()
-        }
-    }
-
-    private fun myDialog(): Dialog {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.sign_up_dialog_layout)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog.setCancelable(false)
-        return dialog
     }
 }

@@ -10,7 +10,7 @@ class MyDatabase(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase?) {
         val query = "CREATE TABLE $USER_TABLE_NAME (" +
-                "$USER_ID integer primary key, " +
+                "$USER_ID text primary key, " +
                 "$USER_FULL_NAME text, " +
                 "$USER_LAST_MESSAGE text )"
         db?.execSQL(query)
@@ -32,9 +32,10 @@ class MyDatabase(context: Context) :
         onCreate(db)
     }
 
-    fun insertUser(fullName: String, lastMessage: String) {
+    fun insertUser(phone: String, fullName: String, lastMessage: String) {
         val db = writableDatabase
         val contentValues = ContentValues()
+        contentValues.put(USER_ID, phone)
         contentValues.put(USER_FULL_NAME, fullName)
         contentValues.put(USER_LAST_MESSAGE, lastMessage)
         db.insert(USER_TABLE_NAME, null, contentValues)
@@ -93,7 +94,7 @@ class MyDatabase(context: Context) :
         return usersList
     }
 
-    private fun getIMGTxt(fullName: String): String {
+    fun getIMGTxt(fullName: String): String {
         val txtArr = fullName.split(" ")
         return txtArr[0][0] + "" + txtArr[1][0]
     }

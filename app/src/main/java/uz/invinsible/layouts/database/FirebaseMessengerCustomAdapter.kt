@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uz.invinsible.layouts.R
 
-class ChatRecyclerCustomAdapter(
+class FirebaseMessengerCustomAdapter(
     private val usersList: ArrayList<User>,
     private val onItemClick: RecycleItemOnClick,
 ) :
-    RecyclerView.Adapter<ChatRecyclerCustomAdapter.ViewHolder>() {
+    RecyclerView.Adapter<FirebaseMessengerCustomAdapter.ViewHolder>() {
     private val color = arrayOf(Color.BLUE, Color.RED)
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,7 +25,7 @@ class ChatRecyclerCustomAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.imgTxt.text = usersList[position].imgTxt
-        holder.imgTxt.setBackgroundColor(color[position])
+        holder.imgTxt.setBackgroundColor(color[position % 2])
         holder.fullName.text = usersList[position].fullName
         holder.phoneNumber.text = usersList[position].lastMessage
 

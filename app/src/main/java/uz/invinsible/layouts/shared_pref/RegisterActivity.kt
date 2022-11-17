@@ -35,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
             println("Button clicked")
             if (password?.text.toString() == confPassword?.text.toString()) {
                 startActivity(Intent(this, LoginActivity::class.java))
-                storage.saveSharedPref(gmail?.text.toString(), password?.text.toString())
+                storage.saveSharedPrefPhone(gmail?.text.toString(), password?.text.toString())
             } else {
                 Toast.makeText(this, "Confirm xato!", Toast.LENGTH_SHORT)
                     .show()

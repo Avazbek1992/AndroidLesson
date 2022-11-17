@@ -17,7 +17,7 @@ class MessengerChat : Fragment(), RecycleItemOnClick {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.chat_activity_layout, container, false)
+        val root = inflater.inflate(R.layout.firebase_messenger_activity_layout, container, false)
         val myDatabase = MyDatabase(requireActivity())
         val messageList = myDatabase.selectMessages(1, 2)
         var lastMessage1 = ""
@@ -34,14 +34,14 @@ class MessengerChat : Fragment(), RecycleItemOnClick {
         myDatabase.updateLastMessage(2, lastMessage2)
 
         if (myDatabase.getUsersCount() == 0) {
-            myDatabase.insertUser("Azizbek Mahmudjanov", "")
-            myDatabase.insertUser("Shahriyor Abubakriddinov", "")
+            myDatabase.insertUser("","Azizbek Mahmudjanov", "")
+            myDatabase.insertUser("","Shahriyor Abubakriddinov", "")
         }
 
         val usersList = myDatabase.selectUsers()
         val recyclerView: RecyclerView = root.findViewById(R.id.chat_recycler_view_id)
         val recycleItemOnClick: RecycleItemOnClick = this
-        val adapter = ChatRecyclerCustomAdapter(usersList, recycleItemOnClick)
+        val adapter = FirebaseMessengerCustomAdapter(usersList, recycleItemOnClick)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.adapter = adapter
         return root

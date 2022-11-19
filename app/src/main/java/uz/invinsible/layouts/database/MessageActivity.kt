@@ -2,12 +2,10 @@ package uz.invinsible.layouts.database
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -41,7 +39,7 @@ class MessageActivity : AppCompatActivity() {
         //set recyclerView
         recyclerView = findViewById(R.id.message_recycler_view_id)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MessageAdapter(messageList, from)
+        adapter = MessageAdapter(messageList, from.toString(), arrayOf("fromUser", "toUser"))
         recyclerView.adapter = adapter
         if (messageList.isNotEmpty())
             recyclerView.smoothScrollToPosition(messageList.size - 1)
@@ -69,7 +67,7 @@ class MessageActivity : AppCompatActivity() {
             )
             messageEdit.setText("")
             messageList = database.selectMessages(from, to)
-            adapter = MessageAdapter(messageList, from)
+            adapter = MessageAdapter(messageList, from.toString(), arrayOf("fromUser", "toUser"))
             recyclerView.adapter = adapter
             recyclerView.smoothScrollToPosition(messageList.size - 1)
         }
@@ -110,14 +108,14 @@ class MessageActivity : AppCompatActivity() {
             messageList.add(
                 Message(
                     0,
-                    from,
-                    to,
+                    from.toString(),
+                    to.toString(),
                     "",
                     "15:00",
                     uri.toString()
                 )
             )
-            adapter = MessageAdapter(messageList, from)
+            adapter = MessageAdapter(messageList, from.toString(), arrayOf("fromUser", "toUser"))
             recyclerView.adapter = adapter
             recyclerView.smoothScrollToPosition(messageList.size - 1)
         }

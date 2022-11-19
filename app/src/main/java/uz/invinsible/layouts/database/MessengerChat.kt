@@ -23,7 +23,7 @@ class MessengerChat : Fragment(), RecycleItemOnClick {
         var lastMessage1 = ""
         var lastMessage2 = ""
         for (messages in messageList) {
-            if (messages.from == 1) {
+            if (messages.from.toString() == "1") {
                 lastMessage2 = messages.message
             } else {
                 lastMessage1 = messages.message

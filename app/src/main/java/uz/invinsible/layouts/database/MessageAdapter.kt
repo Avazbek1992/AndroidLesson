@@ -1,23 +1,27 @@
 package uz.invinsible.layouts.database
 
 import android.net.Uri
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uz.invinsible.layouts.R
-import java.net.URI
+import uz.invinsible.layouts.shared_pref.DataStorage
 
-class MessageAdapter(private val messageList: ArrayList<Message>, private val userId: Int) :
+class MessageAdapter(
+    private val messageList: ArrayList<Message>,
+    private val userId: String,
+    private val names: Array<String>
+) :
     RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
     private lateinit var database: MyDatabase
+    private lateinit var storage: DataStorage
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         database = MyDatabase(parent.context)
+        storage = DataStorage(parent.context)
         val root =
             LayoutInflater.from(parent.context).inflate(R.layout.message_items, parent, false)
 
@@ -25,15 +29,17 @@ class MessageAdapter(private val messageList: ArrayList<Message>, private val us
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        println("Messages: ${messageList[position].message}")
+
         if (messageList[position].from == userId && messageList[position].imgUrl.isEmpty()) {//right
-            holder.rightIMGText.text = database.getUser(messageList[position].from).imgTxt
-            holder.rightUserName.text = database.getUser(messageList[position].from).fullName
+            holder.rightIMGText.text = storage.getIMGTxt(names[0])
+            holder.rightUserName.text = names[0]
             holder.rightMessage.text = messageList[position].message
             holder.rightMessageDate.text = messageList[position].currentDate
             holder.rightLayout.visibility = View.VISIBLE
         } else if (messageList[position].imgUrl.isEmpty()) {//left
-            holder.leftIMGText.text = database.getUser(messageList[position].from).imgTxt
-            holder.leftUserName.text = database.getUser(messageList[position].from).fullName
+            holder.leftIMGText.text = storage.getIMGTxt(names[1])
+            holder.leftUserName.text = names[1]
             holder.leftMessage.text = messageList[position].message
             holder.leftMessageDate.text = messageList[position].currentDate
             holder.leftLayout.visibility = View.VISIBLE
@@ -44,6 +50,25 @@ class MessageAdapter(private val messageList: ArrayList<Message>, private val us
             holder.imgLeft.setImageURI(Uri.parse((messageList[position].imgUrl)))
             holder.imageLeftLayout.visibility = View.VISIBLE
         }
+//        if (messageList[position].from == userId && messageList[position].imgUrl.isEmpty()) {//right
+//            holder.rightIMGText.text = database.getUser(messageList[position].from).imgTxt
+//            holder.rightUserName.text = database.getUser(messageList[position].from).fullName
+//            holder.rightMessage.text = messageList[position].message
+//            holder.rightMessageDate.text = messageList[position].currentDate
+//            holder.rightLayout.visibility = View.VISIBLE
+//        } else if (messageList[position].imgUrl.isEmpty()) {//left
+//            holder.leftIMGText.text = database.getUser(messageList[position].from).imgTxt
+//            holder.leftUserName.text = database.getUser(messageList[position].from).fullName
+//            holder.leftMessage.text = messageList[position].message
+//            holder.leftMessageDate.text = messageList[position].currentDate
+//            holder.leftLayout.visibility = View.VISIBLE
+//        } else if (messageList[position].from == userId && messageList[position].imgUrl.isNotEmpty()) {
+//            holder.imgRight.setImageURI(Uri.parse((messageList[position].imgUrl)))
+//            holder.imageRightLayout.visibility = View.VISIBLE
+//        } else {
+//            holder.imgLeft.setImageURI(Uri.parse((messageList[position].imgUrl)))
+//            holder.imageLeftLayout.visibility = View.VISIBLE
+//        }
     }
 
     override fun getItemCount(): Int {

@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".firebase.ChatActivity" />
         <activity android:name=".firebase.FirebaseMessengerActivity" />
         <activity android:name=".database.MessengerTabActivity" />
         <activity android:name=".firebase.AuthSignUpActivity" />

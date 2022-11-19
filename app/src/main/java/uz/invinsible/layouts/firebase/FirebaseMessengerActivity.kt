@@ -1,16 +1,14 @@
 package uz.invinsible.layouts.firebase
 
 import android.annotation.SuppressLint
-import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import uz.invinsible.layouts.R
 import uz.invinsible.layouts.database.FirebaseMessengerCustomAdapter
 import uz.invinsible.layouts.database.MyDatabase
 import uz.invinsible.layouts.database.RecycleItemOnClick
@@ -28,17 +26,18 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
     lateinit var myDatabase: MyDatabase
     lateinit var onClick: RecycleItemOnClick
     lateinit var adapter: FirebaseMessengerCustomAdapter
+    lateinit var storage: DataStorage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FirebaseMessengerActivityLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val dataStorage = DataStorage(baseContext)
-        phone = dataStorage.readPhone().toString()
+        storage = DataStorage(baseContext)
+        phone = storage.readPhone().toString()
         println("MY_PHONE: $phone")
         myDatabase = MyDatabase(baseContext)
         userList = ArrayList()
         onClick = this
-        val dialog = myDialog()
+        val dialog = storage.myDialog(this)
         dialog.show()
         firebaseDatabase.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -53,9 +52,10 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
                             userList.add(
                                 User(
                                     userList.size + 1,
+                                    getPhone,
                                     fullName,
                                     getPhone,
-                                    myDatabase.getIMGTxt(fullName)
+                                    storage.getIMGTxt(fullName)
                                 )
                             )
 //                            myDatabase.insertUser(getPhone, fullName, getPhone)
@@ -74,7 +74,10 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
     }
 
     override fun onItemClick(position: Int) {
-
+        val intent = Intent(baseContext, ChatActivity::class.java)
+        intent.putExtra(storage.putExtraKey, userList[position].phone)
+        intent.putExtra(storage.putExtraNameKey, userList[position].fullName)
+        startActivity(intent)
     }
 
     private fun setRecyclerView() {
@@ -83,11 +86,4 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
         binding.chatRecyclerViewId.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun myDialog(): Dialog {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.sign_up_dialog_layout)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog.setCancelable(false)
-        return dialog
-    }
 }

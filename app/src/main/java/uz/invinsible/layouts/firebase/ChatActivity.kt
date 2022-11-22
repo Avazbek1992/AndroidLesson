@@ -14,6 +14,7 @@ import uz.invinsible.layouts.database.Message
 import uz.invinsible.layouts.database.MessageAdapter
 import uz.invinsible.layouts.databinding.MessageActivityLayoutBinding
 import uz.invinsible.layouts.shared_pref.DataStorage
+import java.time.LocalTime
 
 class ChatActivity : AppCompatActivity() {
     lateinit var binding: MessageActivityLayoutBinding
@@ -34,6 +35,8 @@ class ChatActivity : AppCompatActivity() {
         userMobile = storage.readPhone()!!
         getMobile = intent.getStringExtra(storage.putExtraKey)!!
         val actionBarTitle = intent.getStringExtra(storage.putExtraNameKey)!!
+        println("User Mobile: $userMobile")
+        println("Get Mobile: $getMobile")
         binding.fullNameId.text = actionBarTitle
         binding.seenId.text = "offline"
         binding.actionBarImgId.text = storage.getIMGTxt(actionBarTitle)
@@ -58,22 +61,22 @@ class ChatActivity : AppCompatActivity() {
 //          get User from and to
                 fromUser = snapshot.child("Users").child(userMobile).child("name").value.toString()
                 toUser = snapshot.child("Users").child(getMobile).child("name").value.toString()
-
-                if (snapshot.hasChild("chats")
-                    && snapshot.child("chats").hasChild("from")
-                    && snapshot.child("chats").hasChild("to")
-                    && snapshot.child("chats").hasChild("message")
-                ) {
+                println("Messages Count: ${snapshot.child("chats").childrenCount}")
+                messageList.clear()
+                if (snapshot.hasChild("chats")) {
+                    var k  =0
+                    println("MessagesActivity: $snapshot")
                     for (messages in snapshot.child("chats").children) {
+                        println("Chats Result: ${messages.toString()}")
+                        println("Chats Result: ${messages.value}")
                         chatId = (snapshot.child("chats").childrenCount + 1).toInt()
-                        val from = snapshot.child("chats").child("from").value.toString()
-                        val to = snapshot.child("chats").child("to").value.toString()
-                        val message = snapshot.child("chats").child("message").value.toString()
-                        val time = snapshot.child("chats").child("time").value.toString()
-                        messageList.clear()
+                        val from = messages.child("from").value.toString()
+                        val to = messages.child("to").value.toString()
+                        val message = messages.child("message").value.toString()
+                        val time = messages.child("time").value.toString()
                         messageList.add(
                             Message(
-                                chatId,
+                                k++,
                                 from,
                                 to,
                                 message,
@@ -83,7 +86,7 @@ class ChatActivity : AppCompatActivity() {
                         )
                     }
                 }
-                adapter = MessageAdapter(messageList, userMobile, arrayOf(fromUser, toUser))
+                adapter = MessageAdapter(messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
                 binding.messageRecyclerViewId.adapter = adapter
                 binding.messageRecyclerViewId.layoutManager = LinearLayoutManager(baseContext)
             }
@@ -94,7 +97,7 @@ class ChatActivity : AppCompatActivity() {
 
         })
 
-        adapter = MessageAdapter(messageList, userMobile, arrayOf(fromUser, toUser))
+        adapter = MessageAdapter(messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
         binding.messageRecyclerViewId.adapter = adapter
         binding.messageRecyclerViewId.layoutManager = LinearLayoutManager(this)
 
@@ -105,7 +108,7 @@ class ChatActivity : AppCompatActivity() {
             firebaseDatabase.child("chats").child(chatId.toString()).child("message")
                 .setValue(binding.messageEditId.text.toString())
             firebaseDatabase.child("chats").child(chatId.toString()).child("time")
-                .setValue(System.currentTimeMillis().toString())
+                .setValue(LocalTime.now())
 
             binding.messageEditId.setText("")
         }

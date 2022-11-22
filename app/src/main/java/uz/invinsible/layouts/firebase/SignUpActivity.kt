@@ -80,7 +80,6 @@ class SignUpActivity : AppCompatActivity() {
                     override fun onCancelled(error: DatabaseError) {
                         myDialog().dismiss()
                     }
-
                 })
             }
         }

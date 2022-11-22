@@ -1,5 +1,6 @@
 package uz.invinsible.layouts.database
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uz.invinsible.layouts.R
 import uz.invinsible.layouts.shared_pref.DataStorage
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MessageAdapter(
     private val messageList: ArrayList<Message>,
     private val userId: String,
+    private val getMobile: String,
     private val names: Array<String>
 ) :
     RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
@@ -29,26 +34,29 @@ class MessageAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        println("Messages: ${messageList[position].message}")
-
-        if (messageList[position].from == userId && messageList[position].imgUrl.isEmpty()) {//right
-            holder.rightIMGText.text = storage.getIMGTxt(names[0])
-            holder.rightUserName.text = names[0]
-            holder.rightMessage.text = messageList[position].message
-            holder.rightMessageDate.text = messageList[position].currentDate
-            holder.rightLayout.visibility = View.VISIBLE
-        } else if (messageList[position].imgUrl.isEmpty()) {//left
-            holder.leftIMGText.text = storage.getIMGTxt(names[1])
-            holder.leftUserName.text = names[1]
-            holder.leftMessage.text = messageList[position].message
-            holder.leftMessageDate.text = messageList[position].currentDate
-            holder.leftLayout.visibility = View.VISIBLE
-        } else if (messageList[position].from == userId && messageList[position].imgUrl.isNotEmpty()) {
-            holder.imgRight.setImageURI(Uri.parse((messageList[position].imgUrl)))
-            holder.imageRightLayout.visibility = View.VISIBLE
-        } else {
-            holder.imgLeft.setImageURI(Uri.parse((messageList[position].imgUrl)))
-            holder.imageLeftLayout.visibility = View.VISIBLE
+        println("MessagesAdapter: ${messageList[position].message}")
+        if (userId == messageList[position].from && getMobile == messageList[position].to ||
+            userId == messageList[position].to && getMobile == messageList[position].from
+        ) {
+            if (messageList[position].from == userId && messageList[position].imgUrl.isEmpty()) {//right
+                holder.rightIMGText.text = storage.getIMGTxt(names[0])
+                holder.rightUserName.text = names[0]
+                holder.rightMessage.text = messageList[position].message
+                holder.rightMessageDate.text = currentDate(messageList[position].currentDate)
+                holder.rightLayout.visibility = View.VISIBLE
+            } else if (messageList[position].imgUrl.isEmpty()) {//left
+                holder.leftIMGText.text = storage.getIMGTxt(names[1])
+                holder.leftUserName.text = names[1]
+                holder.leftMessage.text = messageList[position].message
+                holder.leftMessageDate.text = messageList[position].currentDate
+                holder.leftLayout.visibility = View.VISIBLE
+            } else if (messageList[position].from == userId && messageList[position].imgUrl.isNotEmpty()) {
+                holder.imgRight.setImageURI(Uri.parse((messageList[position].imgUrl)))
+                holder.imageRightLayout.visibility = View.VISIBLE
+            } else {
+                holder.imgLeft.setImageURI(Uri.parse((messageList[position].imgUrl)))
+                holder.imageLeftLayout.visibility = View.VISIBLE
+            }
         }
 //        if (messageList[position].from == userId && messageList[position].imgUrl.isEmpty()) {//right
 //            holder.rightIMGText.text = database.getUser(messageList[position].from).imgTxt
@@ -69,6 +77,13 @@ class MessageAdapter(
 //            holder.imgLeft.setImageURI(Uri.parse((messageList[position].imgUrl)))
 //            holder.imageLeftLayout.visibility = View.VISIBLE
 //        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun currentDate(currentDate: String): String {
+
+        val simpleDateFormat = SimpleDateFormat("hh:mm")
+        return simpleDateFormat.format(Date())
     }
 
     override fun getItemCount(): Int {

@@ -60,7 +60,27 @@ class DataStorage(var context: Context) {
 
     fun getIMGTxt(fullName: String): String {
         val txtArr = fullName.split(" ")
-        if (txtArr.size>1)
-        return txtArr[0][0] + "" + txtArr[1][0] else return txtArr[0][0]+""
+        if (txtArr.size > 1)
+            return txtArr[0][0] + "" + txtArr[1][0] else return txtArr[0][0] + ""
+    }
+
+    fun getCurrentTime(ms: String): String {
+        val mSecond = ms.toLong()
+        val second = mSecond / 1_000
+        val hour = mSecond / (1_000 * 3_600)
+        val minute = mSecond % (1_000 * 3_600) / 1_000
+        val finalMin = if (minute < 10) {
+            "0$minute"
+        } else {
+            "$minute"
+        }
+
+        val finalSec = if (hour < 10) {
+            "0$hour"
+        } else {
+            "$hour"
+        }
+
+        return "$finalMin:$finalSec"
     }
 }

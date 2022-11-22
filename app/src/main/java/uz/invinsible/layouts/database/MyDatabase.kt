@@ -38,12 +38,24 @@ class MyDatabase(val context: Context) :
 
     fun insertUser(phone: String, fullName: String, lastMessage: String) {
         val db = writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(USER_ID, phone)
-        contentValues.put(USER_FULL_NAME, fullName)
-        contentValues.put(USER_LAST_MESSAGE, lastMessage)
-        db.insert(USER_TABLE_NAME, null, contentValues)
-        db.close()
+        var hasNot = true
+        val users = selectUsers()
+
+        for (user in users){
+            if (user.phone == phone){
+                hasNot = false
+                break
+            }
+        }
+
+        if (hasNot){
+            val contentValues = ContentValues()
+            contentValues.put(USER_PHONE, phone)
+            contentValues.put(USER_FULL_NAME, fullName)
+            contentValues.put(USER_LAST_MESSAGE, "last")
+            db.insert(USER_TABLE_NAME, null, contentValues)
+            db.close()
+        }
     }
 
     fun insertMessage(from: Int, to: Int, message: String, currentDate: String) {

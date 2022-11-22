@@ -49,19 +49,19 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
                         val getPhone = user.key.toString()
                         if (getPhone != phone) {
                             val fullName = user.child("name").value.toString()
-                            userList.add(
-                                User(
-                                    userList.size + 1,
-                                    getPhone,
-                                    fullName,
-                                    getPhone,
-                                    storage.getIMGTxt(fullName)
-                                )
-                            )
-//                            myDatabase.insertUser(getPhone, fullName, getPhone)
-                            setRecyclerView()
+//                            userList.add(
+//                                User(
+//                                    userList.size + 1,
+//                                    getPhone,
+//                                    fullName,
+//                                    getPhone,
+//                                    storage.getIMGTxt(fullName)
+//                                )
+//                            )
+                            myDatabase.insertUser(getPhone, fullName, getPhone)
                         }
                     }
+                    setRecyclerView()
                 }
                 dialog.dismiss()
             }
@@ -81,6 +81,8 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
     }
 
     private fun setRecyclerView() {
+        userList.clear()
+        userList = myDatabase.selectUsers()
         adapter = FirebaseMessengerCustomAdapter(userList, onClick)
         binding.chatRecyclerViewId.adapter = adapter
         binding.chatRecyclerViewId.layoutManager = LinearLayoutManager(this)

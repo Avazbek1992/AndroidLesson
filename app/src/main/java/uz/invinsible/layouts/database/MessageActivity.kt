@@ -39,7 +39,12 @@ class MessageActivity : AppCompatActivity() {
         //set recyclerView
         recyclerView = findViewById(R.id.message_recycler_view_id)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MessageAdapter(messageList, from.toString(), arrayOf("fromUser", "toUser"))
+        adapter = MessageAdapter(
+            messageList,
+            from.toString(),
+            "2",
+            arrayOf("fromUser", "toUser")
+        )
         recyclerView.adapter = adapter
         if (messageList.isNotEmpty())
             recyclerView.smoothScrollToPosition(messageList.size - 1)
@@ -67,7 +72,12 @@ class MessageActivity : AppCompatActivity() {
             )
             messageEdit.setText("")
             messageList = database.selectMessages(from, to)
-            adapter = MessageAdapter(messageList, from.toString(), arrayOf("fromUser", "toUser"))
+            adapter = MessageAdapter(
+                messageList,
+                from.toString(),
+                "2",
+                arrayOf("fromUser", "toUser")
+            )
             recyclerView.adapter = adapter
             recyclerView.smoothScrollToPosition(messageList.size - 1)
         }
@@ -115,7 +125,12 @@ class MessageActivity : AppCompatActivity() {
                     uri.toString()
                 )
             )
-            adapter = MessageAdapter(messageList, from.toString(), arrayOf("fromUser", "toUser"))
+            adapter = MessageAdapter(
+                messageList,
+                from.toString(),
+                "2",
+                arrayOf("fromUser", "toUser")
+            )
             recyclerView.adapter = adapter
             recyclerView.smoothScrollToPosition(messageList.size - 1)
         }

@@ -75,8 +75,8 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
 
     override fun onItemClick(position: Int) {
         val intent = Intent(baseContext, ChatActivity::class.java)
-        intent.putExtra(storage.putExtraKey, userList[position].phone)
-        intent.putExtra(storage.putExtraNameKey, userList[position].fullName)
+        intent.putExtra(DataStorage.putExtraKey, userList[position].phone)
+        intent.putExtra(DataStorage.putExtraNameKey, userList[position].fullName)
         startActivity(intent)
     }
 

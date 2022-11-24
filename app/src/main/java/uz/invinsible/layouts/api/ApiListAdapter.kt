@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import uz.invinsible.layouts.R
-import uz.invinsible.layouts.api.model.MyDataItem
+import uz.invinsible.layouts.api.model.posts.PostItem
 
-class ApiListAdapter(val arrayList: ArrayList<MyDataItem>) : BaseAdapter() {
+class ApiListAdapter(val arrayList: ArrayList<PostItem>) : BaseAdapter() {
     override fun getCount(): Int {
         return arrayList.size
     }

@@ -33,8 +33,8 @@ class ChatActivity : AppCompatActivity() {
         setContentView(binding.root)
         val storage = DataStorage(baseContext)
         userMobile = storage.readPhone()!!
-        getMobile = intent.getStringExtra(storage.putExtraKey)!!
-        val actionBarTitle = intent.getStringExtra(storage.putExtraNameKey)!!
+        getMobile = intent.getStringExtra(DataStorage.putExtraKey)!!
+        val actionBarTitle = intent.getStringExtra(DataStorage.putExtraNameKey)!!
         println("User Mobile: $userMobile")
         println("Get Mobile: $getMobile")
         binding.fullNameId.text = actionBarTitle

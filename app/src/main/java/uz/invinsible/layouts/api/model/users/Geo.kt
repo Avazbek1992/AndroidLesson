@@ -1,4 +1,4 @@
-package uz.invinsible.layouts.api.model
+package uz.invinsible.layouts.api.model.users
 
 data class Geo(
     val lat: String,

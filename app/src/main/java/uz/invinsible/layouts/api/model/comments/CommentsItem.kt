@@ -1,6 +1,6 @@
-package uz.invinsible.layouts.api.model
+package uz.invinsible.layouts.api.model.comments
 
-data class MyCommentsItem(
+data class CommentsItem(
     val body: String,
     val email: String,
     val id: Int,

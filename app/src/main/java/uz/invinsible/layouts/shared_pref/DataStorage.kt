@@ -7,8 +7,10 @@ import uz.invinsible.layouts.R
 
 class DataStorage(var context: Context) {
 
-    val putExtraNameKey = "KEY_INTENT_NAME"
-    val putExtraKey = "KEY_INTENT_PHONE"
+    companion object {
+        val putExtraNameKey = "KEY_INTENT_NAME"
+        val putExtraKey = "KEY_INTENT_PHONE"
+    }
 
     @SuppressLint("CommitPrefEdits")
     fun saveSharedPrefPhone(gmail: String, password: String) {

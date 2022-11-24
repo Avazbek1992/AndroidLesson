@@ -1,6 +1,7 @@
 package uz.invinsible.layouts.database
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MessageAdapter(
+    private val context: Context,
     private val messageList: ArrayList<Message>,
     private val userId: String,
     private val getMobile: String,
@@ -25,7 +27,7 @@ class MessageAdapter(
     private lateinit var database: MyDatabase
     private lateinit var storage: DataStorage
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        database = MyDatabase(parent.context)
+        database = MyDatabase(context)
         storage = DataStorage(parent.context)
         val root =
             LayoutInflater.from(parent.context).inflate(R.layout.message_items, parent, false)

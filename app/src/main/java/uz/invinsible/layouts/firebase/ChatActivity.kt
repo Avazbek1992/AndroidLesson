@@ -86,7 +86,7 @@ class ChatActivity : AppCompatActivity() {
                         )
                     }
                 }
-                adapter = MessageAdapter(messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
+                adapter = MessageAdapter(baseContext,messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
                 binding.messageRecyclerViewId.adapter = adapter
                 binding.messageRecyclerViewId.layoutManager = LinearLayoutManager(baseContext)
             }
@@ -97,7 +97,7 @@ class ChatActivity : AppCompatActivity() {
 
         })
 
-        adapter = MessageAdapter(messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
+        adapter = MessageAdapter(baseContext,messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
         binding.messageRecyclerViewId.adapter = adapter
         binding.messageRecyclerViewId.layoutManager = LinearLayoutManager(this)
 

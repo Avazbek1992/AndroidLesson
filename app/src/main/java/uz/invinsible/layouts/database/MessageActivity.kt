@@ -40,6 +40,7 @@ class MessageActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.message_recycler_view_id)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = MessageAdapter(
+            this,
             messageList,
             from.toString(),
             "2",
@@ -73,6 +74,7 @@ class MessageActivity : AppCompatActivity() {
             messageEdit.setText("")
             messageList = database.selectMessages(from, to)
             adapter = MessageAdapter(
+                this,
                 messageList,
                 from.toString(),
                 "2",
@@ -126,6 +128,7 @@ class MessageActivity : AppCompatActivity() {
                 )
             )
             adapter = MessageAdapter(
+                this,
                 messageList,
                 from.toString(),
                 "2",

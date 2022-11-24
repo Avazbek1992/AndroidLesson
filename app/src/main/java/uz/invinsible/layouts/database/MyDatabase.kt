@@ -91,6 +91,7 @@ class MyDatabase(val context: Context) :
     }
 
     fun selectUsers(): ArrayList<User> {
+        storage = DataStorage(context)
         val db = readableDatabase
         val query = "select * from $USER_TABLE_NAME"
         val cursor = db.rawQuery(query, arrayOf())
@@ -119,6 +120,7 @@ class MyDatabase(val context: Context) :
     }
 
     fun getUser(userId: Int): User {
+        storage = DataStorage(context)
         val db = readableDatabase
         val query = "select * from $USER_TABLE_NAME where $USER_ID = $userId"
         val cursor = db.rawQuery(query, arrayOf())

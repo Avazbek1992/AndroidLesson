@@ -51,7 +51,7 @@ class DataStorage(var context: Context) {
         return sharedPref.getBoolean(key, false)
     }
 
-    fun myDialog(context: Context): Dialog {
+    fun myDialog(): Dialog {
         val dialog = Dialog(context)
         dialog.setContentView(R.layout.sign_up_dialog_layout)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

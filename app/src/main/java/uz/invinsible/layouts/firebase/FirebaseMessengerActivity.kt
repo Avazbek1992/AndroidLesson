@@ -37,7 +37,7 @@ class FirebaseMessengerActivity : AppCompatActivity(), RecycleItemOnClick {
         myDatabase = MyDatabase(baseContext)
         userList = ArrayList()
         onClick = this
-        val dialog = storage.myDialog(this)
+        val dialog = storage.myDialog()
         dialog.show()
         firebaseDatabase.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")

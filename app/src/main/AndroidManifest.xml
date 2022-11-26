@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Layouts"
         tools:targetApi="31">
         <activity
-            android:name=".api.ApiMainActivity"
+            android:name=".api.ApiUsersActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".api.ProfileActivity" />
         <activity android:name=".api.CommentsActivity" />
         <activity android:name=".firebase.ChatActivity" />
         <activity android:name=".firebase.FirebaseMessengerActivity" />

@@ -1,4 +1,4 @@
-package uz.invinsible.layouts.api
+package uz.invinsible.layouts.api.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.TextView
 import uz.invinsible.layouts.R
 import uz.invinsible.layouts.api.model.posts.PostItem
 
-class ApiListAdapter(val arrayList: ArrayList<PostItem>) : BaseAdapter() {
+class PostAdapter(val arrayList: ArrayList<PostItem>) : BaseAdapter() {
     override fun getCount(): Int {
         return arrayList.size
     }

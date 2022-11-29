@@ -8,8 +8,10 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import uz.invinsible.layouts.R
 import uz.invinsible.layouts.api.model.posts.PostItem
+import uz.invinsible.layouts.databinding.ApiPostsItemLatoutBinding
 
-class PostAdapter(val arrayList: ArrayList<PostItem>) : BaseAdapter() {
+class PostAdapter(val arrayList: ArrayList<PostItem>, val postId: Int) : BaseAdapter() {
+    lateinit var binding: ApiPostsItemLatoutBinding
     override fun getCount(): Int {
         return arrayList.size
     }
@@ -25,11 +27,12 @@ class PostAdapter(val arrayList: ArrayList<PostItem>) : BaseAdapter() {
     @SuppressLint("ViewHolder", "MissingInflatedId")
     override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
 
-        val root = LayoutInflater.from(parent?.context).inflate(R.layout.api_item_latout, parent, false)
+        binding =
+            ApiPostsItemLatoutBinding.inflate(LayoutInflater.from(parent?.context), parent, false)
 
-        root.findViewById<TextView>(R.id.api_title).text = arrayList[position].title
-        root.findViewById<TextView>(R.id.api_body).text = arrayList[position].body
+        binding.apiTitle.text = arrayList[position].title
+        binding.apiBody.text = arrayList[position].body
 
-        return root
+        return binding.root
     }
 }

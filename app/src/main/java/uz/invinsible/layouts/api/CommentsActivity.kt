@@ -1,5 +1,6 @@
 package uz.invinsible.layouts.api
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,13 +9,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import uz.invinsible.layouts.api.adapters.CommentAdapter
 import uz.invinsible.layouts.api.model.comments.CommentsItem
+import uz.invinsible.layouts.databinding.ApiCommentActivityLayoutBinding
 import uz.invinsible.layouts.shared_pref.DataStorage
 
 class CommentsActivity : AppCompatActivity() {
+    lateinit var binding: ApiCommentActivityLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = ApiCommentActivityLayoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val id = intent.getIntExtra(DataStorage.putExtraKey, -1)
         var arrayList = ArrayList<CommentsItem>()
         val retrofitBuild = Retrofit.Builder()
@@ -30,19 +35,16 @@ class CommentsActivity : AppCompatActivity() {
                 call: Call<List<CommentsItem>>,
                 response: Response<List<CommentsItem>>
             ) {
-                arrayList = response.body() as ArrayList<CommentsItem>
-
-                for (i in 0 until arrayList.size) {
-                    if (arrayList[i].postId == id) {
-                        println("id = ${arrayList[i].id}")
-                        println("postId = ${arrayList[i].postId}")
-                        println("name = ${arrayList[i].name}")
-                        println("email = ${arrayList[i].email}")
-                        println("body = ${arrayList[i].body}")
+                if (response.isSuccessful) {
+                    arrayList.clear()
+                    val list = response.body() as ArrayList<CommentsItem>
+                    for (i in 0 until list.size) {
+                        if (list[i].postId == id)
+                            arrayList.add(list[i])
                     }
+                    val adapter = CommentAdapter(arrayList)
+                    binding.ipaCommentList.adapter = adapter
                 }
-//                val adapter = ApiListAdapter(arrayList)
-//                binding.ipaList.adapter = adapter
             }
 
             override fun onFailure(call: Call<List<CommentsItem>>, t: Throwable) {
@@ -50,13 +52,5 @@ class CommentsActivity : AppCompatActivity() {
                     .show()
             }
         })
-
-
-
-//        binding.ipaList.setOnItemClickListener { adapterView, view, position, l ->
-//            val intent = Intent(baseContext, CommentsActivity::class.java)
-//            intent.putExtra(DataStorage.putExtraKey, arrayList[position].userId)
-//            startActivity(intent)
-//        }
     }
 }

@@ -18,10 +18,16 @@
             android:layout_height="match_parent"
             android:background="@color/blue"
             android:gravity="center"
-            android:text="DT"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_play" />
+
 
     </androidx.cardview.widget.CardView>
 
@@ -32,10 +38,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:singleLine="true"
             android:id="@+id/user_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:text="Doniyor Tohirjanov"
             android:textSize="30sp"
             android:textStyle="bold" />

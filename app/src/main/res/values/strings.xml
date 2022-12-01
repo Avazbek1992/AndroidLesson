@@ -74,6 +74,8 @@
     <string name="loading">Loading…</string>
     <string name="fish">F.I.SH</string>
     <string name="phone_number">Telefon raqam</string>
+    <string name="_998">+998</string>
+    <string name="check">check</string>
 
 
     <string-array name="fullNames">

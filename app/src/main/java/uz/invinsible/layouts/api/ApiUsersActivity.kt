@@ -53,7 +53,6 @@ class ApiUsersActivity : AppCompatActivity() {
 
         binding.ipaMainList.setOnItemClickListener { adapterView, view, position, l ->
             val array = ArrayList<String>()
-            array.add(userList[position].name)
             array.add(
                 userList[position].address.city.plus(" ").plus(userList[position].address.zipcode)
             )

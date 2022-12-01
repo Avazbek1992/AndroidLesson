@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <EditText
+            android:maxLength="1"
+            android:singleLine="true"
+            android:id="@+id/code_edit1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:maxLength="1"
+            android:singleLine="true"
+            android:id="@+id/code_edit2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:maxLength="1"
+            android:singleLine="true"
+            android:id="@+id/code_edit3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:maxLength="1"
+            android:singleLine="true"
+            android:id="@+id/code_edit4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:maxLength="1"
+            android:singleLine="true"
+            android:id="@+id/code_edit5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:maxLength="1"
+            android:singleLine="true"
+            android:id="@+id/code_edit6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/code_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check" />
+
+</LinearLayout>

@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Layouts"
         tools:targetApi="31">
         <activity
-            android:name=".api.ApiUsersActivity"
+            android:name=".firebase.AuthPhoneActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".firebase.AuthCodeActivity" />
+        <activity android:name=".api.ApiUsersActivity" />
         <activity android:name=".api.ApiToDoActivity" />
         <activity android:name=".api.ApiPostsActivity" />
         <activity android:name=".api.ApiProfileActivity" />

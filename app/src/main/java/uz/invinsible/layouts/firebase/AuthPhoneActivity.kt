@@ -34,8 +34,8 @@ class AuthPhoneActivity : AppCompatActivity() {
         binding.sendBtn.setOnClickListener {
             callbacks = object : OnVerificationStateChangedCallbacks() {
                 override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                    val intent=Intent(this@AuthPhoneActivity,ApiUsersActivity::class.java)
-startActivity(intent)
+                    val intent = Intent(this@AuthPhoneActivity, ApiUsersActivity::class.java)
+                    startActivity(intent)
                     finish()
                 }
 

@@ -64,7 +64,7 @@ class ChatActivity : AppCompatActivity() {
                 println("Messages Count: ${snapshot.child("chats").childrenCount}")
                 messageList.clear()
                 if (snapshot.hasChild("chats")) {
-                    var k  =0
+                    var k = 0
                     println("MessagesActivity: $snapshot")
                     for (messages in snapshot.child("chats").children) {
                         println("Chats Result: ${messages.toString()}")
@@ -86,7 +86,14 @@ class ChatActivity : AppCompatActivity() {
                         )
                     }
                 }
-                adapter = MessageAdapter(baseContext,messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
+//                messageList.sortByDescending { chatId }
+                adapter = MessageAdapter(
+                    baseContext,
+                    messageList,
+                    userMobile,
+                    getMobile,
+                    arrayOf(fromUser, toUser)
+                )
                 binding.messageRecyclerViewId.adapter = adapter
                 binding.messageRecyclerViewId.layoutManager = LinearLayoutManager(baseContext)
             }
@@ -97,9 +104,17 @@ class ChatActivity : AppCompatActivity() {
 
         })
 
-        adapter = MessageAdapter(baseContext,messageList, userMobile, getMobile, arrayOf(fromUser, toUser))
+        adapter = MessageAdapter(
+            baseContext,
+            messageList,
+            userMobile,
+            getMobile,
+            arrayOf(fromUser, toUser)
+        )
+
         binding.messageRecyclerViewId.adapter = adapter
         binding.messageRecyclerViewId.layoutManager = LinearLayoutManager(this)
+
 
         binding.sendBtnId.setOnClickListener {
             firebaseDatabase.child("chats").child(chatId.toString()).child("from")

@@ -112,7 +112,7 @@
 
 
     <!--Locale-->
-    <string name="locale_title">Kitob</string>
+    <string name="locale_title">Book</string>
     <string name="uz">UZ</string>
     <string name="kr">KR</string>
     <string name="en">EN</string>

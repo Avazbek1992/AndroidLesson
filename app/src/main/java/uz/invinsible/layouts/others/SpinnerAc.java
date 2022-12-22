@@ -1,4 +1,4 @@
-package uz.invinsible.layouts;
+package uz.invinsible.layouts.others;
 
 import android.os.Bundle;
 import android.widget.Spinner;

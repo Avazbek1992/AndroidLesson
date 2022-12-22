@@ -49,14 +49,16 @@ class ApiUsersActivity : AppCompatActivity() {
                         .show()
                 }
             })
+        actionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         binding.ipaMainList.setOnItemClickListener { adapterView, view, position, l ->
             val array = ArrayList<String>()
+            array.add(photoList[position].url)
+            array.add(userList[position].name)
             array.add(
                 userList[position].address.city.plus(" ").plus(userList[position].address.zipcode)
             )
-            array.add(photoList[position].url)
             array.add(userList[position].phone)
             array.add(userList[position].email)
             array.add(userList[position].website)
@@ -95,5 +97,9 @@ class ApiUsersActivity : AppCompatActivity() {
                         .show()
                 }
             })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

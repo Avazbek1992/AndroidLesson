@@ -3,17 +3,14 @@ package uz.invinsible.layouts.firebase
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.TokenWatcher
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import com.google.firebase.auth.FederatedAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import uz.invinsible.layouts.MainActivity
 import uz.invinsible.layouts.api.ApiUsersActivity
 import uz.invinsible.layouts.databinding.PhoneCodeLayoutBinding
 import uz.invinsible.layouts.shared_pref.DataStorage

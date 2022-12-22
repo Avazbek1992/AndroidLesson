@@ -8,13 +8,14 @@ import uz.invinsible.layouts.R
 class DataStorage(var context: Context) {
 
     companion object {
-        val putExtraNameKey = "KEY_INTENT_NAME"
-        val putExtraKey = "KEY_INTENT_PHONE"
+        const val SHARED_NAME = "RegSharePref"
+        const val putExtraNameKey = "KEY_INTENT_NAME"
+        const val putExtraKey = "KEY_INTENT_PHONE"
     }
 
     @SuppressLint("CommitPrefEdits")
     fun saveSharedPrefPhone(gmail: String, password: String) {
-        val sharedPref = context.getSharedPreferences("RegSharePref", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString("mail", gmail)
         editor.putString("pass", password)
@@ -23,31 +24,44 @@ class DataStorage(var context: Context) {
 
     @SuppressLint("CommitPrefEdits")
     fun saveSharedPrefPhone(phone: String) {
-        val sharedPref = context.getSharedPreferences("RegSharePref", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putString("phone", phone)
         editor.apply()
     }
 
-    fun readPhone(): String? {
-        val sharedPref = context.getSharedPreferences("RegSharePref", Context.MODE_PRIVATE)
-        return sharedPref.getString("phone", "")
-    }
-
-    fun readSharePref(key: String): String? {
-        val sharedPref = context.getSharedPreferences("RegSharePref", Context.MODE_PRIVATE)
-        return sharedPref.getString(key, "")
-    }
-
-    fun saveSharedPrefProfile(checked: Boolean) {
-        val sharedPref = context.getSharedPreferences("RegSharePref", Context.MODE_PRIVATE)
+    fun saveLocale(localeCode: String) {
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
-        editor.putBoolean("check", checked)
+        editor.putString("locale", localeCode)
         editor.apply()
     }
 
+    fun readLocale(): String {
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString("locale", "ug")!!
+    }
+
+    fun readPhone(): String? {
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString("phone", "")
+    }
+
+    fun readSharePref(key: String): String {
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString(key, "ug")!!
+    }
+
+    fun saveSharedPrefProfile(checked: Boolean) {
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("check", checked)
+        editor.apply()
+
+    }
+
     fun readSharePrefProfile(key: String): Boolean {
-        val sharedPref = context.getSharedPreferences("RegSharePref", Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
         return sharedPref.getBoolean(key, false)
     }
 

@@ -1,11 +1,10 @@
-package uz.invinsible.layouts
+package uz.invinsible.layouts.others
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import uz.invinsible.layouts.intent.SecondIntentActivity
+import uz.invinsible.layouts.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -10,8 +10,6 @@ import uz.invinsible.layouts.R
 
 class PagerAdapter(private val arrayList: ArrayList<PagerItem>) :
     RecyclerView.Adapter<PagerAdapter.ViewHolder>() {
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val root = LayoutInflater.from(parent.context).inflate(R.layout.pager_item, parent, false)
         return ViewHolder(root)
@@ -19,13 +17,13 @@ class PagerAdapter(private val arrayList: ArrayList<PagerItem>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pagerItem = arrayList[position]
-        holder.image.setImageResource(pagerItem.imageID)
-        holder.title.text = pagerItem.title
-        holder.subtitle.text = pagerItem.subtitle
+        holder.image.setImageResource(pagerItem.getImageID())
+        holder.title.text = pagerItem.getTitle()
+        holder.subtitle.text = pagerItem.getSubtitle()
     }
 
     override fun getItemCount(): Int {
-       return arrayList.size
+        return arrayList.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

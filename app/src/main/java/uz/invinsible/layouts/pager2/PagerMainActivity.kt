@@ -53,11 +53,11 @@ class PagerMainActivity : AppCompatActivity() {
         )
 
         for (i in title.indices) {
-            arrayList.add(
-                PagerItem(
-                    imageID[i], title[i], subtitle[i]
-                )
-            )
+            val pagerItem = PagerItem()
+            pagerItem.setImageID(imageID[i])
+            pagerItem.setTitle(title[i])
+            pagerItem.setSubtitle(subtitle[i])
+            arrayList.add(pagerItem)
         }
 
         viewPager2.adapter = PagerAdapter(arrayList)
